@@ -77,3 +77,114 @@ public class UnorderedNumbers {
 }
 
 
+
+
+
+package Task4;
+
+import java.util.*;
+
+public class CPU_Jobs {
+    
+    private static class Job {
+        int id;
+        int priority;
+        int duration;
+        
+        public Job(int id, int priority, int duration) {
+            this.id = id;
+            this.priority = priority;
+            this.duration = duration;
+        }
+    }
+    
+    public static void main(String[] args) {
+        // create some sample jobs
+        
+        ArrayList<Job> jobs = new ArrayList<Job>();
+        // take job inputs from user
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of jobs: ");
+        int n = sc.nextInt();
+        for(int i=0;i<n;i++){
+            System.out.print("Enter job id: ");
+            int id = sc.nextInt();
+            System.out.print("Enter job priority: ");
+            int priority = sc.nextInt();
+            System.out.print("Enter job duration: ");
+            int duration = sc.nextInt();
+            jobs.add(new Job(id, priority, duration));
+        }
+        
+        ArrayList<Integer> schedule1 = FirstComeFirstServeSchedule(jobs);
+        System.out.println("First Come First Serve Schedule: ");
+        for(int i=0;i<schedule1.size();i++){
+            System.out.println("System time [" + (i) + "] - Job " + schedule1.get(i) + " is running");
+        }
+
+
+        ArrayList<Integer> schedule2 = PrioritySchedule(jobs);
+        System.out.println("Priority Schedule: ");
+        for(int i=0;i<schedule2.size();i++){
+            System.out.println("System time [" + (i) + "] - Job " + schedule2.get(i) + " is running");
+        }
+
+        ArrayList<Integer> schedule3 = ShortestRemainingTimeFirstSchedule(jobs);
+        System.out.println("Shortest Remaining Time First Schedule: ");
+        for(int i=0;i<schedule3.size();i++){
+            System.out.println("System time [" + (i) + "] - Job " + schedule3.get(i) + " is running");
+        }
+
+    }
+    public static ArrayList<Integer> FirstComeFirstServeSchedule(ArrayList<Job> jobs){
+        var totalTime = 0;
+        for(var job: jobs){
+            totalTime += job.duration;
+        }
+        var schedule = new ArrayList<Integer>(totalTime);
+        for(var job: jobs){
+            for(var i = 0; i < job.duration; i++){
+                schedule.add(job.id);
+            }
+        }
+        return schedule;
+    }
+
+    public static ArrayList<Integer> PrioritySchedule(ArrayList<Job> jobs){
+        var totalTime = 0;
+        for(var job: jobs){
+            totalTime += job.duration;
+        }
+        var schedule = new ArrayList<Integer>(totalTime);
+        jobs.sort((a, b) -> a.priority - b.priority);
+        Collections.reverse(jobs);
+        for(var job: jobs){
+            for(var i = 0; i < job.duration; i++){
+                schedule.add(job.id);
+            }
+        }
+
+        return schedule;
+    }
+
+    public static ArrayList<Integer> ShortestRemainingTimeFirstSchedule(ArrayList<Job> jobs){
+        var totalTime = 0;
+        for(var job: jobs){
+            totalTime += job.duration;
+        }
+        var schedule = new ArrayList<Integer>(totalTime);
+        
+        jobs.sort((a, b) -> a.duration - b.duration);
+        for(var job: jobs){
+            for(var i = 0; i < job.duration; i++){
+                schedule.add(job.id);
+            }
+        }
+
+        return schedule;
+    }
+
+
+}
+
+
