@@ -1,4 +1,4 @@
-# Task 1
+# Courswork
 
 
 
@@ -34,3 +34,46 @@ public class DuplicateElements {
 	    }
 	
 }
+
+
+
+
+
+
+
+package Task2;
+
+import java.util.HashSet;
+
+public class UnorderedNumbers {
+	
+	 public static void main(String[] args) {
+	    	
+	        int[] arr1 = new int [] {8, 4, 5, 2, 9, 1}; 
+	        int[] arr2 = new int [] {4, 5, 3, 2, 1, 9};
+	        
+	        
+	        HashSet<Integer> arr3 = new HashSet<>();
+		    HashSet<Integer> arr4 = new HashSet<>();
+		    
+		    
+		    for (int a : arr1) {
+		        arr3.add(a);
+		    }
+		    
+		    for (int b : arr2) {
+		        arr4.add(b);
+		    }
+		    
+		    if (arr3.equals(arr4)) {
+		        System.out.println("Have the same set of numbers");
+		    }
+		    
+		    else {
+		        System.out.println("Doesn't have the same set of numbers");
+		    }
+		}
+	        
+}
+
+
