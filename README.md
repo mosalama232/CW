@@ -80,6 +80,106 @@ public class UnorderedNumbers {
 
 
 
+
+
+package Task3;
+
+public class ADT {
+	
+    private int[] x;
+    private int r;
+    private int b;
+    
+    public ADT(int capacity) {
+        x = new int[capacity];
+        r = -1;
+        b = capacity;
+    }
+    
+    public void Red(int item) {
+    	
+        if (r + 1 >= b) {
+            throw new RuntimeException("red is full");
+        }
+        
+        x[++r] = item;
+    }
+    
+    public void Blue(int item) {
+    	
+        if (b - 1 <= r) {
+            throw new RuntimeException("blue is full");
+        }
+        
+        x[--b] = item;
+    }
+    
+    public int Red() {
+    	
+        if (r == -1) {
+            throw new RuntimeException("red is empty");
+        }
+        
+        return x[r--];
+    }
+    
+    public int Blue() {
+    	
+        if (b == x.length) {
+        	
+            throw new RuntimeException("blue is empty");
+        }
+        
+        return x[b++];
+    }
+    
+    public boolean RedE() {
+    	
+        return r == -1;
+    }
+    
+    public boolean BlueE() {
+    	
+        return b == x.length;
+    }
+    
+    public boolean RedF() {
+    	
+        return r + 1 >= b;
+        
+    }
+    
+    public boolean BlueF() {
+    	
+        return b - 1 <= r;
+        
+    }
+    
+    public static void main(String[] args) {
+    	
+        ADT S = new ADT(15);
+        
+        S.Red(7);
+        S.Red(8);
+        S.Blue(6);
+       S.Blue(3);
+        
+        System.out.println(S.Red());
+        System.out.println(S.Blue());
+        System.out.println(S.Red());
+        System.out.println(S.Blue());
+    }
+}
+
+
+
+
+
+
+
+
+
+
 package Task4;
 
 import java.util.*;
