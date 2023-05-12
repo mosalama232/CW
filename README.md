@@ -188,3 +188,57 @@ public class CPU_Jobs {
 }
 
 
+
+
+
+
+
+
+
+package Task7;
+
+import java.util.Arrays;
+
+public class Heap {
+    
+    public static void main(String[] args) {
+        int[] a = {4, 9, 11, 10, 5, 2};
+        System.out.println(  Arrays.toString(a));
+    }
+    
+    public static void heapsort(int[] a) {
+        buildMinHeap(a);
+        for (int i = a.length - 1; i >= 0; i--) {
+            int temp = a[0];
+            a[0] = a[i];
+            a[i] = temp;
+            minHeapify(a, 0, i);
+        }
+    }
+    
+    public static void buildMinHeap(int[] a) {
+        for (int i = a.length / 2 - 1; i >= 0; i--) {
+            minHeapify(a, i, a.length);
+        }
+    }
+    
+    public static void minHeapify(int[] a, int b, int c) {
+        int left = 2 * b + 1;
+        int right = 2 * b + 2;
+        int smallest = b;
+        if (left < c && a[left] < a[smallest]) {
+            smallest = left;
+        }
+        if (right < c && a[right] < a[smallest]) {
+            smallest = right;
+        }
+        if (smallest != b) {
+            int temp = a[b];
+            a[b] = a[smallest];
+            a[smallest] = temp;
+            minHeapify(a, smallest, c);
+        }
+    }
+}
+
+
